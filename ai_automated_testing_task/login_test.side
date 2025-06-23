@@ -1,0 +1,80 @@
+{
+  "id": "sample-id",
+  "version": "2.0",
+  "name": "Login Test",
+  "url": "https://the-internet.herokuapp.com/login",
+  "tests": [
+    {
+      "id": "test-valid-login",
+      "name": "Valid Login Test",
+      "commands": [
+        {
+          "command": "open",
+          "target": "/login",
+          "value": ""
+        },
+        {
+          "command": "type",
+          "target": "id=username",
+          "value": "tomsmith"
+        },
+        {
+          "command": "type",
+          "target": "id=password",
+          "value": "SuperSecretPassword!"
+        },
+        {
+          "command": "clickAndWait",
+          "target": "css=button[type='submit']",
+          "value": ""
+        },
+        {
+          "command": "assertText",
+          "target": "css=.flash.success",
+          "value": "You logged into a secure area!"
+        }
+      ]
+    },
+    {
+      "id": "test-invalid-login",
+      "name": "Invalid Login Test",
+      "commands": [
+        {
+          "command": "open",
+          "target": "/login",
+          "value": ""
+        },
+        {
+          "command": "type",
+          "target": "id=username",
+          "value": "wronguser"
+        },
+        {
+          "command": "type",
+          "target": "id=password",
+          "value": "wrongpass"
+        },
+        {
+          "command": "clickAndWait",
+          "target": "css=button[type='submit']",
+          "value": ""
+        },
+        {
+          "command": "assertText",
+          "target": "css=.flash.error",
+          "value": "Your username is invalid!"
+        }
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "suite-id",
+      "name": "Login Test Suite",
+      "tests": [
+        "test-valid-login",
+        "test-invalid-login"
+      ]
+    }
+  ]
+}
